@@ -1,2 +1,20 @@
-# HolisticNet
-This is the code repository for reproducing the results of the paper titled “HolisticNet: Remote Sensing Small Object Detection Algorithm Based on Neighborhood Regression and Dynamic Adjustment”
+## 全局网络
+这是用于重现论文《HolisticNet：基于邻域回归和动态调整的遥感小目标检测算法》结果的代码库。
+![图 1 HolisticNet 网络结构](https://github.com/user-attachments/assets/6044a332-5d6d-4564-ba24-1eca40b79f63)
+## 必需的环境
+MMDetection是一个基于PyTorch开发的开源物体检测工具箱，旨在为研究人员和开发人员提供一个易于使用且高效的框架。本研究中的所有比较算法均使用MMDetection重现。实验环境配置为Ubuntu 20.04，CUDA v11.8，cuDNN v8.6.0，PyTorch 2.2.1，运行在两块NVIDIA 4090 GPU上。学习率设置为乘数0.008，并使用随机梯度下降（SGD）作为优化器。
+# 安装
+我们鼓励您使用Anaconda创建一个虚拟环境。
+克隆仓库后，进入根目录并 👇
+1. 安装依赖项。
+使用pip安装requirements.txt中的包：pip install -r requirements.txt
+2. 安装环境。
+conda install pytorch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 -c pytorch
+## 数据集下载
+DIOR 是一个大规模的公共数据集，旨在用于光学遥感图像中的目标检测。它包含总共23,463张遥感图像和190,288个物体实例，主要由小物体组成。图像的空间分辨率范围从0.5米到30米，涵盖了20类常见的遥感目标。在我们的研究中，我们从数据集中选择了十个代表性的小型遥感物体类别，包括体育场（ST）、机场（AIR）、烟囱（CH）、飞机（AIN）、大坝（DA）、立交桥（OV）、船舶（SH）、港口（HA）、桥梁（BR）和车辆（VE）。我们将这个子集称为DIOR-H。
+DIOR-H 下载链接: https://huggingface.co/yeliudev/CATNet/resolve/main/datasets/dior-b162132d.zip
+## 评估指标
+我们使用COCO评估指标来评估模型在不同IoU阈值下的性能，包括AP（IoU=0.5:0.95）、AP50（IoU=0.5）和AP75（IoU=0.75），以及小、中、大物体的平均精度，分别记为APS、APM和APL。此外，我们使用Params、FLOPs和FPS来评估模型的效率。对于所有类别AP和mAP的计算，我们采用PASCAL VOC评估协议，其中mAP是通过计算所有物体类别AP50（IoU=0.5）的平均值得到的。
+尽管VOC mAP和COCO AP50都在IoU阈值为0.5的情况下评估物体检测性能，但在评估方法上存在显著差异。VOC mAP采用了一种全点插值法来计算在固定召回率下的平均精度，导致评估相对宽松。相比之下，COCO AP50使用了一种更细致的插值和积分方法在整个精确度-召回率曲线上进行评估，更严格地反映了模型的检测能力。因此，给定相同的预测结果，COCO AP50通常略低于VOC mAP，但这两个指标有效地测量了在IoU=0.5标准下的模型性能。
+## 公开声明
+我们完全认识到开源代码在促进研究可重复性和推动科学进步方面的重要性。然而，由于目前论文正在评审中，且本项目中使用的算法是正在进行的专利申请的一部分，因此代码发布必须经过内部批准流程，目前无法公开发布。我们计划在工作正式发布后尽快完成必要的组织和审查程序，并将在代码库上发布源代码和关键模型参数，以促进可重复性和进一步的研究。
