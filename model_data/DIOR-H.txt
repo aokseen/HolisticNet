@@ -1,0 +1,10 @@
+Stadium
+Airport
+Chimney
+Airplane
+Dam
+Overpass
+Ship
+Harbor
+Bridge
+Vehicle
