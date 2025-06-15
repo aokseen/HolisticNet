@@ -3,12 +3,12 @@ This is the code repository for reproducing the results of the paper titled “H
 ![图 1 HolisticNet 网络结构](https://github.com/user-attachments/assets/6044a332-5d6d-4564-ba24-1eca40b79f63)
 ## Required environment
 MMDetection is an open-source object detection toolbox developed based on PyTorch, designed to provide researchers and developers with an easy-to-use and efficient framework. All comparative algorithms in this study were reproduced using MMDetection. The experimental environment was configured with Ubuntu 20.04, CUDA v11.8, cuDNN v8.6.0, and PyTorch 2.2.1, running on two NVIDIA 4090 GPUs. The learning rate was set with a multiplier of 0.008, and stochastic gradient descent (SGD) was employed as the optimizer.
-# Installation
+## Installation
 We encourage you to create a virtual environment with Anaconda.
 Once you have cloned the repository, cd to the root directory and 👇
-1. Install dependencies.
+# 1. Install dependencies.
 Use pip to install the package in requirements. txt: pip install - r requirements. txt
-2. Installation environment
+# 2. Installation environment
 conda install pytorch==2.2.1 torchvision==0.17.1 torchaudio==2.2.1 -c pytorch
 ## Dataset Download
 DIOR is a large-scale public dataset designed for object detection in optical remote sensing images. It contains a total of 23,463 remote sensing images and 190,288 object instances, primarily consisting of small objects. The spatial resolution of the image’s ranges from 0.5 meters to 30 meters and covers 20 categories of common remote sensing targets. For our study, we selected ten representative categories of small remote sensing objects from the dataset, including Stadium (ST), Airport (AIR), Chimney (CH), Airplane (AIN), Dam (DA), Overpass (OV), Ship (SH), Harbor (HA), Bridge (BR), and Vehicle (VE). We refer to this subset as DIOR-H.
